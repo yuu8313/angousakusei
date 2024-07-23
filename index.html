@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>暗号化と復号化</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.11/pako.min.js"></script>
+  <script defer src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container">
+    <h1>暗号化と復号化</h1>
+    <textarea id="plainText" placeholder="平文を入力してください"></textarea>
+    <input type="text" id="encryptionKey" placeholder="暗号化キーを入力してください">
+    <select id="compressionMethod" onchange="updateCompressionDescription()">
+      <option value="lz-string">LZString - 短い文字列に適した高速な圧縮アルゴリズム。 鍵はひらがなで</option>
+      <option value="base64">Base64 - バイナリデータをテキストとしてエンコードする方法。</option>
+      <option value="uri">URI Encoding - URLに含めるために文字列をエンコードする方法。</option>
+      <option value="hex">Hex - バイナリデータを16進数表現に変換する方法。</option>
+      <option value="rot13">ROT13 - アルファベット文字を13文字シフトする簡単な暗号化方法。</option>
+      <option value="rle">RLE (Run Length Encoding) - 繰り返し文字列の圧縮に適した方法。</option>
+      <option value="huffman">Huffman - 可変長の符号を使った効率的な圧縮アルゴリズム。</option>
+      <option value="bzip2">Bzip2 - 高圧縮率のブロックソート圧縮アルゴリズム。</option>
+      <option value="deflate">Deflate - LZ77アルゴリズムとハフマン符号化を組み合わせた圧縮方法。</option>
+      <option value="gzip">Gzip - Deflateアルゴリズムを使ったファイル圧縮方法。</option>
+      <option value="brotli">Brotli - 高圧縮率と高速な解凍を提供する新しい圧縮アルゴリズム。</option>
+      <option value="pack200">Pack200 - Javaアプリケーション用の圧縮アルゴリズム。</option>
+      <option value="lzma">LZMA - 7-Zip形式で使用される高圧縮率のアルゴリズム。</option>
+      <option value="zlib">Zlib - Deflateアルゴリズムを使用する一般的な圧縮ライブラリ。</option>
+      <option value="xz">XZ - LZMA2アルゴリズムを使用する高圧縮率の形式。</option>
+    </select>
+    <p id="compressionDescription"></p>
+    <button onclick="encrypt()">暗号化</button>
+    <textarea id="cipherText" placeholder="暗号文がここに表示されます"></textarea>
+    <textarea id="cipherTextToDecrypt" placeholder="復号化する暗号文を入力してください"></textarea>
+    <input type="text" id="decryptionKey" placeholder="復号化キーを入力してください">
+    <select id="decompressionMethod" onchange="updateDecompressionDescription()">
+      <option value="lz-string">LZString - 短い文字列に適した高速な圧縮アルゴリズム。</option>
+      <option value="base64">Base64 - バイナリデータをテキストとしてエンコードする方法。</option>
+      <option value="uri">URI Encoding - URLに含めるために文字列をエンコードする方法。</option>
+      <option value="hex">Hex - バイナリデータを16進数表現に変換する方法。</option>
+      <option value="rot13">ROT13 - アルファベット文字を13文字シフトする簡単な暗号化方法。</option>
+      <option value="rle">RLE (Run Length Encoding) - 繰り返し文字列の圧縮に適した方法。</option>
+      <option value="huffman">Huffman - 可変長の符号を使った効率的な圧縮アルゴリズム。</option>
+      <option value="bzip2">Bzip2 - 高圧縮率のブロックソート圧縮アルゴリズム。</option>
+      <option value="deflate">Deflate - LZ77アルゴリズムとハフマン符号化を組み合わせた圧縮方法。</option>
+      <option value="gzip">Gzip - Deflateアルゴリズムを使ったファイル圧縮方法。</option>
+      <option value="brotli">Brotli - 高圧縮率と高速な解凍を提供する新しい圧縮アルゴリズム。</option>
+      <option value="pack200">Pack200 - Javaアプリケーション用の圧縮アルゴリズム。</option>
+      <option value="lzma">LZMA - 7-Zip形式で使用される高圧縮率のアルゴリズム。</option>
+      <option value="zlib">Zlib - Deflateアルゴリズムを使用する一般的な圧縮ライブラリ。</option>
+      <option value="xz">XZ - LZMA2アルゴリズムを使用する高圧縮率の形式。</option>
+    </select>
+    <p id="decompressionDescription"></p>
+    <button onclick="decrypt()">復号化</button>
+    <textarea id="decryptedText" placeholder="復号化された平文がここに表示されます"></textarea>
+  </div>
+</body>
+
+</html>
