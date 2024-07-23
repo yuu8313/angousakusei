@@ -1,0 +1,87 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #0b0c10;
+  color: #ffffff;
+}
+
+.container {
+  background-color: #1a1a2e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  border: 1px solid #520066;
+}
+
+h1 {
+  color: #ff00ff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+textarea,
+input,
+select,
+button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #520066;
+  font-size: 16px;
+  background-color: #0b0c10;
+  color: #ffffff;
+}
+
+textarea::placeholder,
+input::placeholder {
+  color: #888888;
+}
+
+button {
+  background-color: #520066;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #3d004d;
+  transform: scale(1.05);
+}
+
+p {
+  margin: 0 0 10px;
+  color: #ff00ff;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  textarea,
+  input,
+  select,
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
